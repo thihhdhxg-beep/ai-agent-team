@@ -1,1 +1,139 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b16">
+  <title>AI Agent Team | Control Room</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">✦</div>
+        <div>
+          <h2>AGENT<span>OS</span></h2>
+          <small>AI CONTROL ROOM</small>
+        </div>
+      </div>
+
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="navigation">
+        <a class="nav-item active" href="#dashboard">◈ Dashboard</a>
+        <a class="nav-item" href="#agents">✧ My Agents</a>
+        <a class="nav-item" href="#voice">◉ Voice Assistant</a>
+        <a class="nav-item" href="#activity">⌁ Activity Log</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="online-dot"></div>
+        <div><strong>Agent System</strong><small>Ready to connect</small></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL AI WORKSPACE</p>
+          <h1>AI Agent <span>Control Room</span></h1>
+        </div>
+        <div class="system-status"><i></i> UI PREVIEW</div>
+      </header>
+
+      <section class="welcome-panel">
+        <div class="welcome-copy">
+          <span class="pill">✦ YOUR AI TEAM</span>
+          <h2>তোমার AI টিম প্রস্তুত?</h2>
+          <p>নির্দেশ দাও, এজেন্টদের কাজ দেখো এবং নিজের কনটেন্ট তৈরির প্রক্রিয়া নিয়ন্ত্রণ করো।</p>
+          <button class="primary-btn" id="startBtn">＋ নতুন কাজ শুরু করো</button>
+        </div>
+        <div class="orb-scene" aria-hidden="true">
+          <div class="orb orbit-one"></div>
+          <div class="orb orbit-two"></div>
+          <div class="core">✦<small>AI</small></div>
+          <div class="floating-chip chip-one">RESEARCH</div>
+          <div class="floating-chip chip-two">CREATE</div>
+          <div class="floating-chip chip-three">PUBLISH</div>
+        </div>
+      </section>
+
+      <section class="section-heading" id="agents">
+        <div><p class="eyebrow">MULTI-AGENT SYSTEM</p><h2>তোমার এজেন্টরা</h2></div>
+        <span class="muted">৫টি বিশেষায়িত এজেন্ট</span>
+      </section>
+
+      <section class="agent-grid">
+        <article class="agent-card">
+          <div class="agent-avatar purple">⌕</div>
+          <span class="agent-state">● অপেক্ষায়</span>
+          <h3>Research Agent</h3>
+          <p>বিষয় ও তথ্য খুঁজবে</p>
+          <div class="agent-track"><span style="width:0%"></span></div>
+        </article>
+        <article class="agent-card">
+          <div class="agent-avatar blue">✎</div>
+          <span class="agent-state">● অপেক্ষায়</span>
+          <h3>Script Agent</h3>
+          <p>বাংলায় স্ক্রিপ্ট লিখবে</p>
+          <div class="agent-track"><span style="width:0%"></span></div>
+        </article>
+        <article class="agent-card">
+          <div class="agent-avatar pink">▧</div>
+          <span class="agent-state">● অপেক্ষায়</span>
+          <h3>Visual Agent</h3>
+          <p>দৃশ্য ও ছবি পরিকল্পনা</p>
+          <div class="agent-track"><span style="width:0%"></span></div>
+        </article>
+        <article class="agent-card">
+          <div class="agent-avatar cyan">▶</div>
+          <span class="agent-state">● অপেক্ষায়</span>
+          <h3>Video Agent</h3>
+          <p>ভিডিও তৈরির কাজ</p>
+          <div class="agent-track"><span style="width:0%"></span></div>
+        </article>
+        <article class="agent-card">
+          <div class="agent-avatar gold">✧</div>
+          <span class="agent-state">● অপেক্ষায়</span>
+          <h3>SEO Agent</h3>
+          <p>টাইটেল ও থাম্বনেইল</p>
+          <div class="agent-track"><span style="width:0%"></span></div>
+        </article>
+      </section>
+
+      <section class="voice-panel" id="voice">
+        <div class="voice-header">
+          <div>
+            <p class="eyebrow">TALK TO YOUR AI</p>
+            <h2>🎙️ Voice Command Center</h2>
+          </div>
+          <span class="pill">বাংলা কথোপকথন</span>
+        </div>
+        <p class="muted">তুমি কী তৈরি করতে চাও? নিচে নির্দেশ লিখতে পারো। পরে Gemini-এর ভয়েস সংযোগ যোগ করা হবে।</p>
+        <div class="chat-window" id="chatWindow" aria-live="polite">
+          <div class="chat-message ai-message">
+            <div class="message-avatar">✦</div>
+            <div><strong>AI Team</strong><p>আসসালামু আলাইকুম! আমি তোমার AI টিম। কী কাজ করতে চাও, আমাকে বলো।</p></div>
+          </div>
+        </div>
+        <form class="command-form" id="commandForm">
+          <input id="commandInput" type="text" placeholder="এখানে নির্দেশ লেখো..." autocomplete="off" required>
+          <button type="submit" class="send-btn">পাঠাও ➤</button>
+        </form>
+        <p class="notice">প্রিভিউ মোড: বাস্তব Gemini উত্তর ও ভয়েস চালু করতে API সংযোগ প্রয়োজন।</p>
+      </section>
+
+      <section class="activity-panel" id="activity">
+        <div class="section-heading">
+          <div><p class="eyebrow">SYSTEM EVENTS</p><h2>সাম্প্রতিক কার্যক্রম</h2></div>
+        </div>
+        <p class="muted" id="activityText">এখনও কোনো কাজ শুরু হয়নি।</p>
+      </section>
+
+      <footer>AGENTOS · AI CREATION WORKSPACE · PREVIEW</footer>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
