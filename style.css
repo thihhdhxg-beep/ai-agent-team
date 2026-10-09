@@ -1,0 +1,295 @@
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #070b16;
+  --panel: #10182a;
+  --border: #253451;
+  --text: #edf4ff;
+  --muted: #91a2bd;
+  --cyan: #48e5ff;
+  --purple: #a78bfa;
+  --green: #48f0a5;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at top, #17264b 0%, transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+header,
+main,
+footer {
+  width: min(1100px, 94%);
+  margin: auto;
+}
+
+header {
+  padding: 26px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(24px, 5vw, 38px);
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.muted,
+.subtitle {
+  color: var(--muted);
+}
+
+.status,
+.badge {
+  display: inline-block;
+  padding: 7px 12px;
+  border: 1px solid #285a57;
+  border-radius: 999px;
+  color: var(--green);
+  background: #102b2b;
+  font-size: 12px;
+}
+
+.panel,
+.agent-card {
+  background: linear-gradient(145deg, #121d33, #0c1222);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 10px 35px #0003;
+}
+
+main {
+  display: grid;
+  gap: 20px;
+  padding-bottom: 30px;
+}
+
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+.agent-card {
+  transition: transform .25s, border-color .25s;
+  animation: appear .5s ease both;
+}
+
+.agent-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--cyan);
+}
+
+.agent-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #1b2d4b;
+  font-size: 27px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 22px #48e5ff18;
+}
+
+.agent-card h3 {
+  margin-bottom: 7px;
+}
+
+.agent-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.progress-track {
+  height: 6px;
+  background: #253149;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  transition: width .5s;
+}
+
+.chat-box {
+  min-height: 180px;
+  max-height: 360px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  background: #080e1c;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+
+.message {
+  max-width: 90%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.message.agent {
+  align-self: flex-start;
+  background: #17243c;
+  border: 1px solid #2a3d5d;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: #193b50;
+  border: 1px solid #27637a;
+}
+
+.chat-form {
+  display: flex;
+  gap: 10px;
+}
+
+input,
+textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 13px 14px;
+  color: var(--text);
+  background: #080e1c;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--cyan);
+}
+
+button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 12px;
+  color: #07111b;
+  background: linear-gradient(100deg, var(--cyan), #8fbaff);
+  font-weight: 700;
+  transition: filter .2s, transform .2s;
+}
+
+button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.activity-list {
+  display: grid;
+  gap: 10px;
+}
+
+.activity-item {
+  padding: 12px;
+  border-left: 3px solid var(--purple);
+  background: #10192a;
+  border-radius: 0 10px 10px 0;
+  color: var(--muted);
+}
+
+footer {
+  padding: 10px 0 28px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.glow {
+  color: var(--cyan);
+  text-shadow: 0 0 18px #48e5ff55;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 20px 0;
+  }
+
+  .panel,
+  .agent-card {
+    padding: 15px;
+  }
+
+  .chat-form {
+    flex-direction: column;
+  }
+
+  .chat-form button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
