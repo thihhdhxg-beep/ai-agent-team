@@ -1,38 +1,41 @@
 
 import os
 from flask import Flask, request, jsonify
-from dotenv import load_dotenv
+from flask_cors import CORS
 from google import genai
 
-load_dotenv()
-
 app = Flask(__name__)
+CORS(app)
 
 api_key = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=api_key) if api_key else None
 
 
-@app.route("/")
+@app.get("/")
 def home():
     return jsonify({
         "status": "online",
-        "project": "AI Agent Team",
-        "message": "AI Agent backend is running"
+        "message": "AI Agent Team Backend is running"
     })
 
 
-@app.route("/chat", methods=["POST"])
+@app.get("/health")
+def health():
+    return jsonify({"status": "healthy"})
+
+
+@app.post("/chat")
 def chat():
     data = request.get_json(silent=True) or {}
-    message = data.get("message", "").strip()
+    message = (data.get("message") or "").strip()
 
     if not message:
-        return jsonify({"error": "Message is required"}), 400
+        return jsonify({"error": "Please provide a message"}), 400
 
     if not client:
         return jsonify({
             "error": "GEMINI_API_KEY is not configured"
-        }), 500
+        }), 503
 
     try:
         response = client.models.generate_content(
@@ -40,17 +43,17 @@ def chat():
             contents=message
         )
         return jsonify({
-            "reply": response.text or "কোনো উত্তর পাওয়া যায়নি।"
+            "reply": response.text or "No response received"
         })
     except Exception:
         app.logger.exception("Gemini request failed")
         return jsonify({
-            "error": "AI response failed. Check server logs."
+            "error": "AI request failed. Check server logs and API settings."
         }), 500
 
 
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
-        port=int(os.getenv("PORT", "10000"))
+        port=int(os.environ.get("PORT", 10000))
     )
